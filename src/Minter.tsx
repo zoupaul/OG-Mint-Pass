@@ -41,7 +41,7 @@ const ConnectButton = styled(WalletDialogButton)`
   height: 60px;
   margin-top: 10px;
   margin-bottom: 5px;
-  background: linear-gradient(180deg, #604ae5 0%, #813eee 100%);
+  background: linear-gradient(0deg, #00239f 0%, #0030db 100%);
   color: white;
   font-size: 16px;
   font-weight: bold;
@@ -65,7 +65,7 @@ export interface HomeProps {
 }
 
 const Home = (props: HomeProps) => {
-  // const [yourSOLBalance, setYourSOLBalance] = useState<number | null>(null);
+  const [yourSOLBalance, setYourSOLBalance] = useState<number | null>(null);
   const rpcUrl = props.rpcHost;
   const [whiteListTokenBalance, setWhiteListTokenBalance] = useState<number>(0);
   const [isMinting, setIsMinting] = useState(false); // true when user got to press MINT
@@ -183,16 +183,20 @@ const Home = (props: HomeProps) => {
       setPublicKey(anchorWallet.publicKey)
       }
 
-      // try {
-      //   const balance = await props.connection.getBalance(
-      //     anchorWallet.publicKey
-      //   );
-      //   console.log("Sol balance is: " + balance);
-      //   setYourSOLBalance(balance);
-      // } catch (e) {
-      //   console.log("Problem getting fair launch state");
-      //   console.log(e);
-      // }
+      try {
+        const balance = await props.connection.getBalance(
+          anchorWallet.publicKey
+        );
+        console.log("Sol balance is: " + balance);
+        setYourSOLBalance(balance/1000000000);
+      } catch (e) {
+        console.log("Problem getting fair launch state");
+        console.log(e);
+      }
+      
+
+
+
 
       if (props.candyMachineId) {
         try {
@@ -252,9 +256,13 @@ const Home = (props: HomeProps) => {
 
   const phase = getPhase(candyMachine);
 
+
+
+
+
   return (
     <Container>
-      <Container maxWidth="xs" style={{ position: "relative" }}>
+      <Container maxWidth="xs" style={{ position: "relative"}}>
         <Paper
           style={{
             padding: "34px 24px 90px 24px",
@@ -300,38 +308,63 @@ const Home = (props: HomeProps) => {
                     </div>
                   )}
 
+                  {/* -------------------------------------------switch picture between unconnected and connected */}
                   <Grid
                     container
                     justifyContent="space-between"
                     color="textSecondary"
                   >
-                    <div className="test-stat">
-                      {(phase === Phase.WhiteListMint ||
-                        phase === Phase.PublicMint) &&
-                        (itemsAvailable !== null && mintingTotal !== null ? (
-                          <p>{mintingTotal + " / " + itemsAvailable}</p>
-                        ) : (
-                          <p className="loading"></p>
-                        ))}
-                    </div>
+                      <div className="test-stat">
+                        {wallet.connected ? (
+                            <div className="mintPics">
+                              <img src="img/mint-pass-gif.gif" width={"100%"}></img>
+                              <p>Wallet: {String(publicKey).substring(0, 4)}...{String(publicKey).substring(String(publicKey).length -4)}</p>
+                              <p>Balance: {String((yourSOLBalance || 0).toFixed(3))}◎</p>
+                            </div>
+                          ) : (
+                            <div className="mintPics">
+                              <img src="img/mint-pass-gif.gif" width={"100%"}></img>                            
+                            </div>
+                          )}
+                      </div>                
+                  </Grid>
 
-                    <div className="text-end">
-                      {(phase === Phase.Welcome && welcomeSettings.showPrice) ||
-                      phase === Phase.WhiteListMint ||
-                      phase === Phase.PublicMint ? (
-                        <>
-                          {price ? (
-                            <p>{price} Sol</p>
+
+                  <Grid
+                    container
+                    justifyContent="space-between"
+                    color="textSecondary"
+                  >
+                      <div className="text-center">
+                        {(phase === Phase.Welcome && welcomeSettings.showPrice) ||
+                        phase === Phase.WhiteListMint ||
+                        phase === Phase.PublicMint ? (
+                          <>
+                            {price ? (
+                              <div className="mintCMData">
+                                <p>Price: </p>
+                                <p>{price}◎</p>
+                              </div>                        
+                            ) : (
+                              <p className="loading"></p>
+                            )}
+                          </>
+                        ) : (
+                          ""
+                        )}
+                      </div>  
+                      <div className="text-center">
+                        {(phase === Phase.WhiteListMint ||
+                          phase === Phase.PublicMint) &&
+                          (itemsAvailable !== null && mintingTotal !== null ? (
+                            <div className="mintCMData">
+                              <p>Minted:</p>
+                              <p>{mintingTotal + "/" + itemsAvailable} ({(mintingTotal/itemsAvailable*100).toFixed(0)}%)</p>
+                            </div>                            
                           ) : (
                             <p className="loading"></p>
-                          )}
-                        </>
-                      ) : (
-                        ""
-                      )}
-
-                      {/* {formatSol(yourSOLBalance || 0).toLocaleString()} SOL */}
-                    </div>
+                          ))}
+                      </div>             
                   </Grid>
 
                   {!wallet.connected ? (

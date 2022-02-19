@@ -36,9 +36,8 @@ nav {
   justify-content: space-between;
   align-items: center;
   height: 100%;
-  padding-left: 20px;
-  padding-right: 20px;
-  max-width: 900px;
+  padding-left: 5%;
+  padding-right: 5%;
   margin: auto;
 }
 
@@ -165,6 +164,11 @@ nav a:hover {
 
 .text-center {
   text-align: center;
+  width: 50%;
+  margin: auto;
+}
+.text-center p {
+  width: 100%;
 }
 
 .text-end {
@@ -177,6 +181,7 @@ nav a:hover {
 
 .pb-3 {
   padding-bottom: 30px;
+  color: white;
 }
 
 .pb-4 {
@@ -184,7 +189,6 @@ nav a:hover {
 }
 
 header {
-  max-width: 900px;
   margin: auto;
   align-items: center;
   border-radius: 30px;
@@ -208,6 +212,16 @@ header {
   }
 }
 
+.headerTitle {
+  text-decoration: none;
+  color: white;
+  font-size: calc(20px + 1.2vw);
+  font-weight: 900;
+  width: 40vw;
+  margin: auto;
+  text-align: center;
+}
+
 .text-primary-color {
   color: var(--text-primary-color);
 }
@@ -223,7 +237,6 @@ header {
   grid-gap: 2rem;
   padding: 20px;
   margin: 40px auto;
-  max-width: 900px;
 }
 
 .team-item {
@@ -233,10 +246,10 @@ header {
 }
 
 .faq {
-  max-width: 900px;
   margin: auto;
   align-items: center;
   padding: 20px;
+  color: white;
 }
 
 .faq div {
@@ -266,17 +279,20 @@ header {
 
 .container {
   position: relative;
-  margin-top: 40px;
-  margin-bottom: 40px;
+  margin-top: 10%;
+  margin-bottom: 10%;
   margin-left: auto;
   margin-right: auto;
-  max-width: 900px;
+  background: linear-gradient(
+    0deg,
+    rgba(0, 0, 0, 0.97) 0%,
+    rgba(20, 20, 20, 0.97) 100%
+  );
 }
 
 .content-wrapper {
-  padding-left: 20px;
-  padding-right: 20px;
-  max-width: 900px;
+  padding-left: 10%;
+  padding-right: 10%;
   margin: auto;
 }
 
@@ -320,9 +336,7 @@ header {
 
 .custom-mint-container {
   margin-bottom: 20px;
- }
-
-
+}
 
 .loading:after {
   content: " .";
@@ -347,5 +361,3 @@ header {
     text-shadow: 0.25em 0 0 white, 0.5em 0 0 white;
   }
 }
-
-

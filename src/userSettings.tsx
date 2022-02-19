@@ -138,15 +138,15 @@ export class MintWhitelistCustomHTML extends React.Component {
 export const publicSaleSettings: PublicSaleSettings = {
   //start date and end date must match your Candy Machine Config for public launch!
 
-  startDate: date("7 Jan 2022 00:00:00 GMT"),
+  startDate: date("18 Feb 2022 21:59:00 UTC"),
   endDate: undefined,
   countdown: false,
   //Example date below
   // date('29 2021 00:00:00 GMT')
 
   //Title and Description
-  title: "Public Sale",
-  desc: "Sale is now live. Mint your NFT below",
+  title: "OG Mint Pass",
+  desc: "",
 
   //Enable Custom HTML
   enableCustomHTML: false,
@@ -157,9 +157,6 @@ export class MintPublicSaleCustomHTML extends React.Component {
     return (
       <div className="custom-mint-container">
         {/* Add Custom HTML code for Public Minting Here! */}
-
-        
-        <p>Test 3</p>
         
         
         {/* End */}
