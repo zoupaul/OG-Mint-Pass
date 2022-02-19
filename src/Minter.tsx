@@ -317,13 +317,13 @@ const Home = (props: HomeProps) => {
                       <div className="test-stat">
                         {wallet.connected ? (
                             <div className="mintPics">
-                              <img src="img/mint-pass-gif.gif" width={"100%"}></img>
+                              <img src="img/mint-pass-gif.gif" alt="" width={"100%"}></img>
                               <p>Wallet: {String(publicKey).substring(0, 4)}...{String(publicKey).substring(String(publicKey).length -4)}</p>
                               <p>Balance: {String((yourSOLBalance || 0).toFixed(3))}◎</p>
                             </div>
                           ) : (
                             <div className="mintPics">
-                              <img src="img/mint-pass-gif.gif" width={"100%"}></img>                            
+                              <img src="img/mint-pass-gif.gif" alt="" width={"100%"}></img>                            
                             </div>
                           )}
                       </div>                

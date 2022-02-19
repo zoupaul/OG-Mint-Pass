@@ -49,18 +49,17 @@ const App = () => {
     []
   );
 
-  function toggleMenu() {
-    const menu = document.getElementById("mobileNavContainer")!;
-    menu.classList.toggle("open-menu");
-    console.log("pressed");
-  }
+  // function toggleMenu() {
+  //   const menu = document.getElementById("mobileNavContainer")!;
+  //   menu.classList.toggle("open-menu");
+  //   console.log("pressed");
+  // }
 
   return (
     <div>
       <div className="content-wrapper">
           <header className="container card mintCard" id="link1">
             <div style={{ padding: "0 24px 0 24px 0" }}>
-              <h3 className="text-secondary-color"></h3>
               <h1 className="pb-3">The Solamonsters Society</h1>
               <p className="text-secondary-color">
                 There are 88 OG Mint Pass NFTs available exclusively to our OG Members on a first-come-first-serve basis.
